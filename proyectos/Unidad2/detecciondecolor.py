@@ -5,18 +5,18 @@ import os
 def detectar_por_color(imagen_path):
     # Verificar si el archivo existe
     if not os.path.exists(imagen_path):
-        print(f"\n❌ ERROR: No se encontró el archivo en la ruta: {imagen_path}")
-        print(f"📁 Directorio actual: {os.getcwd()}")
+        print(f"\nERROR: No se encontró el archivo en la ruta: {imagen_path}")
+        print(f"Directorio actual: {os.getcwd()}")
         return
     
     # Leer la imagen
     imagen = cv2.imread(imagen_path)
     
     if imagen is None:
-        print(f"\n❌ ERROR: No se pudo cargar la imagen: {imagen_path}")
+        print(f"\n ERROR: No se pudo cargar la imagen: {imagen_path}")
         return
     
-    print(f"✅ Imagen cargada correctamente: {imagen.shape}")
+    print(f"Imagen cargada correctamente: {imagen.shape}")
     
     imagen_original = imagen.copy()
     
@@ -66,11 +66,11 @@ def detectar_por_color(imagen_path):
         return
     
     if opcion not in colores:
-        print("❌ Opción no válida")
+        print("Opción no válida")
         return
     
     color_seleccionado = colores[opcion]
-    print(f"\n🔍 Buscando formas de color: {color_seleccionado['nombre']}")
+    print(f"\nBuscando formas de color: {color_seleccionado['nombre']}")
     
     # Crear máscara para el color seleccionado
     mascara = cv2.inRange(hsv, color_seleccionado['lower'], color_seleccionado['upper'])
@@ -96,7 +96,7 @@ def detectar_por_color(imagen_path):
     # Encontrar contornos solo para calcular centros
     contornos, _ = cv2.findContours(mascara, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     
-    print(f"\n📍 COORDENADAS DE LOS CENTROS:")
+    print(f"\nCOORDENADAS DE LOS CENTROS:")
     print("=" * 50)
     
     contador = 0
@@ -128,26 +128,26 @@ def detectar_por_color(imagen_path):
                            cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 0, 0), 1)
     
     print("=" * 50)
-    print(f"\n✅ Total de formas detectadas: {contador}")
+    print(f"\nTotal de formas detectadas: {contador}")
     
     # Contar píxeles detectados
     pixeles_detectados = np.count_nonzero(mascara)
     porcentaje = (pixeles_detectados / (mascara.shape[0] * mascara.shape[1])) * 100
-    print(f"📊 Píxeles detectados: {pixeles_detectados}")
-    print(f"📊 Porcentaje de la imagen: {porcentaje:.2f}%")
+    print(f"Píxeles detectados: {pixeles_detectados}")
+    print(f"Porcentaje de la imagen: {porcentaje:.2f}%")
     
     # Mostrar resultados
     cv2.imshow('1. Imagen Original', imagen_original)
     cv2.imshow('2. Mascara de Color', mascara)
     cv2.imshow(f'3. Deteccion con Centros - {color_seleccionado["nombre"]}', resultado)
     
-    print("\n⌨️  Presione cualquier tecla en las ventanas para cerrar...")
+    print("\nPresione cualquier tecla en las ventanas para cerrar...")
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
 # Uso del programa
 if __name__ == "__main__":
-    print(f"📁 Directorio de trabajo actual: {os.getcwd()}\n")
+    print(f"Directorio de trabajo actual: {os.getcwd()}\n")
     
     # Cambia el nombre de tu archivo aquí
     ruta_imagen = "image.png"

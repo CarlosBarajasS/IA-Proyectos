@@ -12,3 +12,8 @@ mediapipe/Scripts/
 mediapipe/pyvenv.cfg
 share/
 .vscode/
+Unidad2/modelo_facial_lbph.xml
+Unidad2/videos/
+entrenamiento1.h5
+sport.h5
+sportimages.zip

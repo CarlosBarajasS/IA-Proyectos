@@ -4,5 +4,10 @@ Include/
 Lib/
 Scripts/
 sportimages/
+mediapipe/share/
+mediapipe/Include/
+mediapipe/Lib/
+mediapipe/Scripts/
+mediapipe/pyvenv.cfg
 share/
 .vscode/

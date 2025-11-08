@@ -1,1 +1,97 @@
+# Editor/IDE junk
 .vscode/
+.idea/
+*.code-workspace
+
+# OS metadata
+.DS_Store
+Thumbs.db
+
+# Python build artifacts & caches
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+*.manifest
+*.spec
+dist/
+build/
+pip-wheel-metadata/
+
+# Virtual environments (generic + local mediapipe setup)
+.venv/
+venv/
+env/
+Include/
+Lib/
+Scripts/
+etc/
+share/
+mediapipe/Include/
+mediapipe/Lib/
+mediapipe/Scripts/
+mediapipe/share/
+mediapipe/pyvenv.cfg
+
+# Node/JS dependencies & logs
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-lock.yaml
+
+# Logs & temporary files
+*.log
+*.tmp
+*.bak
+*.swp
+
+# Large archives & datasets
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.rar
+*.7z
+*.gz
+sportimages.zip
+
+# Media (skip uploading heavy assets)
+*.png
+*.jpg
+*.jpeg
+*.bmp
+*.tiff
+*.gif
+*.svg
+*.psd
+*.ico
+sportimages/
+
+# Audio & video
+*.mp3
+*.wav
+*.flac
+*.aac
+*.ogg
+*.mp4
+*.mkv
+*.mov
+*.avi
+*.wmv
+*.m4v
+*.webm
+Unidad2/videos/
+
+# Trained models / checkpoints
+*.h5
+*.hdf5
+*.ckpt
+*.tflite
+*.onnx
+*.pb
+sport.h5
+entrenamiento1.h5
+Unidad2/modelo_facial_lbph.xml
+clases/modelo_facial_lbph.xml

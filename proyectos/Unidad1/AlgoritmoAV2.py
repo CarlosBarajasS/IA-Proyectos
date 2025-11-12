@@ -7,7 +7,7 @@ VENTANA = pygame.display.set_mode((ANCHO_VENTANA, ANCHO_VENTANA))
 pygame.display.set_caption("Visualizaci��n de Nodos")
 
 # Pesos
-PESO = .5
+PESO = 1
 PESO_DIAGONAL = .750
 
 # Colores (RGB)

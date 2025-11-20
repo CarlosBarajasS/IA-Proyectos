@@ -6,7 +6,7 @@ images = []
 labels = []
 
 # 🔹 RUTA CORREGIDA con raw string
-base_path = r"C:\Users\Adolfo\Documents\ProyectsVisualStudioCode\Inteligencia Artificial\Entorno Virtual\Proyecto Clasificar Animales - copia\dataset"
+base_path = r"A:\repositorios github\IA-Proyectos\proyectos\Unidad2\dataset"
 
 for label in os.listdir(base_path):
     path = os.path.join(base_path, label)

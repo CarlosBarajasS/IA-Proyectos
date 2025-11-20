@@ -2,9 +2,9 @@ import cv2
 import os
 
 # Ruta del dataset original
-input_dir = r"C:\Users\Adolfo\Documents\ProyectsVisualStudioCode\Inteligencia Artificial\Entorno Virtual\Proyecto Clasificar Animales - copia\dataset"
+input_dir = r"A:\repositorios github\IA-Proyectos\proyectos\Unidad2\dataset"
 # Ruta donde se guardarán las imágenes redimensionadas
-output_dir = r"C:\Users\Adolfo\Documents\ProyectsVisualStudioCode\Inteligencia Artificial\Entorno Virtual\Proyecto Clasificar Animales - copia\DATASET"
+output_dir = r"A:\repositorios github\IA-Proyectos\proyectos\Unidad2\dataset"
 
 # Crear carpeta de salida si no existe
 os.makedirs(output_dir, exist_ok=True)

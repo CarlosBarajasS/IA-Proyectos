@@ -18,7 +18,7 @@ __pycache__/
 dist/
 build/
 pip-wheel-metadata/
-
+*.python-version
 # Virtual environments (generic + local mediapipe setup)
 .venv/
 venv/
@@ -33,7 +33,10 @@ mediapipe/Lib/
 mediapipe/Scripts/
 mediapipe/share/
 mediapipe/pyvenv.cfg
-
+.venv_unidad3/
+.venv_keras2/
+.claude/
+.venv_cnn2/
 # Node/JS dependencies & logs
 node_modules/
 npm-debug.log*
@@ -91,7 +94,16 @@ Unidad2/videos/
 *.tflite
 *.onnx
 *.pb
+*.pt
+*.pth
+*.safetensors
 sport.h5
 entrenamiento1.h5
 Unidad2/modelo_facial_lbph.xml
 clases/modelo_facial_lbph.xml
+
+# Model outputs and checkpoints
+proyectos/Unidad4/outputs/
+**/outputs/
+**/checkpoints/
+**/checkpoint-*/

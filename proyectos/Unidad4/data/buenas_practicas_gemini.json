@@ -1,0 +1,62 @@
+[
+  {
+    "instruction": "¿Cómo puedo hacer este código más 'Pythonic' usando enumerate?",
+    "input": "frutas = ['manzana', 'banana', 'uvas']\nfor i in range(len(frutas)):\n    fruta = frutas[i]\n    print(\"Índice:\", i, \"Fruta:\", fruta)",
+    "output": "Claro viejito, Estás usando un patrón muy común en C/Java, pero en Python es innecesario acceder al índice manualmente para obtener el elemento. Usa `enumerate()`.\n\n**Versión Pythonic:**\n```python\nfor i, fruta in enumerate(frutas):\n    print(f\"Índice: {i} Fruta: {fruta}\")\n```\n**¿Por qué es mejor?** Es más limpio y eficiente porque `enumerate` retorna un iterador que te da el índice y el valor en tuplas, evitando el acceso costoso y repetitivo `frutas[i]`."
+  },
+  {
+    "instruction": "¿Cómo puedo hacer este código más 'Pythonic' para crear listas nuevas?",
+    "input": "numeros = [1, 2, 3, 4, 5]\ncuadrados = []\nfor n in numeros:\n    cuadrados.append(n * n)",
+    "output": "Claro viejito, Este patrón de 'crear lista vacía + bucle + append' es el candidato perfecto para una **List Comprehension**.\n\n**Versión Pythonic:**\n```python\ncuadrados = [n * n for n in numeros]\n```\n**¿Por qué es mejor?**  No solo es una línea en lugar de tres; internamente es más veloz porque la creación de la lista se optimiza a nivel de C, evitando las llamadas repetidas al método `.append()`."
+  },
+  {
+    "instruction": "¿Cómo puedo hacer este código más 'Pythonic' usando f-strings?",
+    "input": "nombre = \"Ana\"\nedad = 25\nprint(\"Hola, mi nombre es \" + nombre + \" y tengo \" + str(edad) + \" años.\")",
+    "output": "Claro viejito, La concatenación con `+` es propensa a errores (se te olvida un espacio o un `str()`) y es lenta porque crea múltiples strings intermedios. Usa **f-strings** (Python 3.6+).\n\n**Versión Pythonic:**\n```python\nprint(f\"Hola, mi nombre es {nombre} y tengo {edad} años.\")\n```\n**¿Por qué es mejor?** Es la forma más legible y performante de formatear texto en Python hoy en día."
+  },
+  {
+    "instruction": "¿Cómo puedo hacer este código más 'Pythonic' usando zip?",
+    "input": "nombres = ['Ana', 'Luis', 'Marta']\nedades = [25, 30, 22]\n\nfor i in range(len(nombres)):\n    print(nombres[i] + \" tiene \" + str(edades[i]))",
+    "output": "Claro viejito, Cuando necesites iterar dos o más listas en paralelo, evita usar índices. Usa `zip()`, que actúa como una cremallera uniendo elementos de la misma posición.\n\n**Versión Pythonic:**\n```python\nfor nombre, edad in zip(nombres, edades):\n    print(f\"{nombre} tiene {edad}\")\n```\n**¿Por qué es mejor?**  Elimina la necesidad de gestionar `i`, evita errores de índice fuera de rango (zip se detiene en la lista más corta) y es mucho más legible."
+  },
+  {
+    "instruction": "¿Cómo puedo hacer este código más 'Pythonic' para filtrar elementos?",
+    "input": "numeros = [10, 5, 20, 3, 8]\nmayores_diez = []\nfor n in numeros:\n    if n > 10:\n        mayores_diez.append(n)",
+    "output": "Claro viejito, Nuevamente, las **List Comprehensions** brillan aquí, ya que admiten filtrado condicional.\n\n**Versión Pythonic:**\n```python\nmayores_diez = [n for n in numeros if n > 10]\n```\n**¿Por qué es mejor?** Expresa la *intención* (quiero una lista de números tal que sean mayores a 10) de forma declarativa, en lugar de describir el *procedimiento* paso a paso."
+  },
+  {
+    "instruction": "¿Cómo puedo simplificar este intercambio de variables?",
+    "input": "temp = a\na = b\nb = temp",
+    "output": "Claro viejito, El clásico intercambio con variable temporal es necesario en muchos lenguajes, pero Python soporta **Tuple Unpacking** (desempaquetado de tuplas).\n\n**Versión Pythonic:**\n```python\na, b = b, a\n```\n**¿Por qué es mejor?** Es atómico, elegante y elimina la necesidad de una variable `temp` que ensucia el namespace."
+  },
+  {
+    "instruction": "¿Cómo mejorar la creación de un diccionario a partir de dos listas?",
+    "input": "keys = ['a', 'b', 'c']\nvalues = [1, 2, 3]\nmi_dict = {}\nfor i in range(len(keys)):\n    mi_dict[keys[i]] = values[i]",
+    "output": "Claro viejito, Puedes combinar el constructor `dict()` con `zip()` para hacer esto en una sola línea.\n\n**Versión Pythonic:**\n```python\nmi_dict = dict(zip(keys, values))\n```\n**¿Por qué es mejor?** Es extremadamente rápido y directo. `zip` genera pares (tuplas) y `dict` sabe exactamente cómo convertir una secuencia de pares clave-valor en un diccionario."
+  },
+  {
+    "instruction": "¿Cómo hacer más 'Pythonic' la lectura de archivos?",
+    "input": "f = open('datos.txt', 'r')\ncontenido = f.read()\nprint(contenido)\nf.close()",
+    "output": "Claro viejito, Si tu programa falla antes de llegar a `f.close()`, el archivo queda abierto (fuga de recursos). Usa un **Context Manager** (`with`).\n\n**Versión Pythonic:**\n```python\nwith open('datos.txt', 'r') as f:\n    contenido = f.read()\n    print(contenido)\n# El archivo se cierra aquí automáticamente, pase lo que pase.\n```\n**¿Por qué es mejor?** Garantiza que los recursos se liberen correctamente incluso si ocurren excepciones dentro del bloque."
+  },
+  {
+    "instruction": "¿Cómo puedo evitar if/else anidados para verificar condiciones simples?",
+    "input": "edad = 20\nif edad >= 18:\n    status = \"Adulto\"\nelse:\n    status = \"Menor\"",
+    "output": "Claro viejito, Para asignaciones simples condicionales, usa el **Operador Ternario** de Python.\n\n**Versión Pythonic:**\n```python\nstatus = \"Adulto\" if edad >= 18 else \"Menor\"\n```\n**¿Por qué es mejor?** Mantiene la asignación en una sola línea lógica, facilitando la lectura cuando la lógica no es compleja."
+  },
+  {
+    "instruction": "¿Cómo iterar sobre un diccionario de forma elegante?",
+    "input": "mi_dict = {'a': 1, 'b': 2}\nfor key in mi_dict:\n    val = mi_dict[key]\n    print(key, val)",
+    "output": "Claro viejito, Aunque iterar sobre el diccionario te da las claves por defecto, acceder al valor con `mi_dict[key]` es redundante. Usa `.items()`.\n\n**Versión Pythonic:**\n```python\nfor key, val in mi_dict.items():\n    print(f\"{key}: {val}\")\n```\n**¿Por qué es mejor?**  Obtienes clave y valor simultáneamente, haciendo el código más claro y evitando búsquedas adicionales en la tabla hash."
+  },
+  {
+    "instruction": "¿Cuándo conviene usar el operador walrus (:=) para simplificar código?",
+    "input": "line = input()\nwhile line != '':\n    print(line)\n    line = input()",
+    "output": "Claro viejito, el walrus evita duplicar lecturas o cálculos. Puedes escribir:\n```python\nwhile (line := input()):\n    print(line)\n```\nLees y evalúas en la misma expresión, manteniendo el bucle compacto y legible."
+  },
+  {
+    "instruction": "¿Por qué es mejor usar pathlib y context manager al leer archivos?",
+    "input": "f = open('data.txt'); data = f.read(); f.close()",
+    "output": "Claro viejito, pathlib hace el código más declarativo y el context manager asegura cierre aunque falle algo.\n```python\nfrom pathlib import Path\npath = Path('data.txt')\nwith path.open() as f:\n    data = f.read()\n```\nMenos fugas de recursos y paths manejables multiplataforma."
+  }
+]

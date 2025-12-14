@@ -1,0 +1,26 @@
+# Tutor Inteligente de Algoritmos - Dependencias
+# Python 3.10+
+
+# Framework de Deep Learning
+torch>=2.0.0
+
+# Transformers y Fine-tuning
+transformers>=4.35.0
+peft>=0.7.0
+trl>=0.7.0
+datasets>=2.14.0
+
+# Cuantizacion
+bitsandbytes>=0.41.0
+
+# Interfaz grafica
+gradio>=4.0.0
+
+# Utilidades
+accelerate>=0.24.0
+sentencepiece>=0.1.99
+protobuf>=3.20.0
+
+# Opcional: Para monitoreo de entrenamiento
+# wandb>=0.15.0
+# tensorboard>=2.14.0

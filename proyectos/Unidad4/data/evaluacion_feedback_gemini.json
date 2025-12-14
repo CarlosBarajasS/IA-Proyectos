@@ -1,0 +1,62 @@
+[
+  {
+    "instruction": "Evalúa mi solución para encontrar un elemento en una lista de usuarios ordenada alfabéticamente.",
+    "input": "def buscar_usuario(usuarios, objetivo):\n    # La lista 'usuarios' ya viene ordenada\n    for u in usuarios:\n        if u == objetivo:\n            return True\n    return False",
+    "output": "Claro viejito, Tu código funciona y es correcto lógicamente, pero es ineficiente para este contexto. Estás utilizando una **Búsqueda Lineal** (O(n)), lo que significa que si tienes 1 millón de usuarios, podrías tener que revisar el millón.\n\nDado que la lista ya está **ordenada**, deberías implementar una **Búsqueda Binaria** (O(log n)). Esto reduciría drásticamente el tiempo de ejecución dividiendo el espacio de búsqueda a la mitad en cada paso."
+  },
+  {
+    "instruction": "Evalúa mi solución para calcular el precio total con impuestos.",
+    "input": "a = 100\nb = 0.21\nc = a + (a * b)\nprint(c)",
+    "output": "Claro viejito, El programa calcula el resultado correcto, pero tiene un problema grave de **estilo y mantenibilidad**. Nombres de variables como `a`, `b` y `c` no comunican nada a quien lee tu código (incluyéndote a ti mismo en el futuro).\n\nSegún **PEP8**, usa nombres descriptivos (snake_case):\n```python\nprecio_base = 100\ntasa_impuesto = 0.21\nprecio_total = precio_base + (precio_base * tasa_impuesto)\n```\nAsí el código se documenta solo."
+  },
+  {
+    "instruction": "Evalúa mi solución para contar cuántas veces aparece cada palabra en un texto.",
+    "input": "text = [\"hola\", \"mundo\", \"hola\", \"python\"]\nconteo = {}\n\nfor palabra in text:\n    if palabra in conteo.keys():\n        conteo[palabra] = conteo[palabra] + 1\n    else:\n        conteo[palabra] = 1",
+    "output": "Claro viejito, Es una solución funcional clásica, pero en Python podemos ser más elegantes y eficientes. \n\n1. No necesitas llamar a `.keys()` en el `if`; `if palabra in conteo:` es suficiente y más rápido.\n2. Para este patrón específico, existe `collections.Counter` o el método `.get()`.\n\n**Mejora sugerida:**\n```python\nconteo[palabra] = conteo.get(palabra, 0) + 1\n```\nEsto elimina el bloque if/else y hace el código mucho más limpio."
+  },
+  {
+    "instruction": "Evalúa mi solución para iterar una lista e imprimir el índice y el valor.",
+    "input": "frutas = [\"manzana\", \"banana\", \"cereza\"]\n\nfor i in range(len(frutas)):\n    print(str(i) + \": \" + frutas[i])",
+    "output": "Claro viejito, Este es un 'anti-patrón' muy común en programadores que vienen de C o Java. Aunque funciona, en Python no se considera 'Pythonic' iterar usando índices generados manualmente si no es estrictamente necesario.\n\n**Mejora:** Usa la función `enumerate()`. Es más limpia y eficiente:\n```python\nfor i, fruta in enumerate(frutas):\n    print(f\"{i}: {fruta}\")\n```\nNota también el uso de f-strings para formatear el texto, que es más legible que concatenar con `+`."
+  },
+  {
+    "instruction": "Evalúa mi solución para eliminar duplicados de una lista de números.",
+    "input": "numeros = [1, 2, 2, 3, 4, 4, 5]\nunicos = []\nfor n in numeros:\n    if n not in unicos:\n        unicos.append(n)\nreturn unicos",
+    "output": "Claro viejito, Tu lógica es impecable para mantener el orden, pero ineficiente en términos de complejidad temporal. La operación `if n not in unicos` recorre la lista `unicos` cada vez. Esto convierte tu algoritmo en **O(N²)**.\n\nSi el orden no importa, usa un **Set** (Conjunto), que elimina duplicados instantáneamente gracias a su estructura hash:\n```python\nreturn list(set(numeros))\n```\nSi necesitas mantener el orden, tu enfoque es aceptable, pero ten en cuenta el coste de rendimiento en listas grandes."
+  },
+  {
+    "instruction": "Evalúa mi solución para sumar una lista de números usando una variable externa.",
+    "input": "total = 0\n\ndef sumar_lista(lista):\n    global total\n    for n in lista:\n        total += n\n\nsumar_lista([10, 20, 30])\nprint(total)",
+    "output": "Claro viejito, Evita el uso de **variables globales** (`global total`) dentro de funciones siempre que sea posible. Esto hace que tu función tenga 'efectos secundarios' (side effects), sea difícil de testear y propensa a errores si se llama dos veces (el total seguiría acumulando).\n\n**Mejora:** La función debe ser autocontenida. Recibe datos, procesa y retorna un valor.\n```python\ndef sumar_lista(lista):\n    return sum(lista)  # O un bucle con variable local\n\nresultado = sumar_lista([10, 20, 30])\n```"
+  },
+  {
+    "instruction": "Evalúa mi solución para verificar si una lista está vacía.",
+    "input": "mi_lista = []\nif len(mi_lista) == 0:\n    print(\"Está vacía\")",
+    "output": "Claro viejito, Funciona, pero no es el estilo idiomático de Python (PEP8). Las listas vacías se evalúan como `False` en un contexto booleano.\n\n**Mejora:** Escribe simplemente:\n```python\nif not mi_lista:\n    print(\"Está vacía\")\n```\nEs más directo y se lee casi como lenguaje natural."
+  },
+  {
+    "instruction": "Evalúa mi solución para buscar un valor en una lista de 10,000 elementos.",
+    "input": "datos = [i for i in range(10000)] # Lista grande\n\ndef existe_valor(val):\n    return val in datos",
+    "output": "Claro viejito, El problema aquí es la elección de la estructura de datos. Una búsqueda `in` sobre una **Lista** es **O(n)** (tiene que recorrerla). Si vas a hacer muchas búsquedas sobre estos datos estáticos, deberías usar un **Diccionario** o un **Set**.\n\n**Mejora:**\n```python\ndatos_set = set(datos) # Convertir una vez\n# La búsqueda ahora es O(1) (instantánea)\nreturn val in datos_set\n```"
+  },
+  {
+    "instruction": "Evalúa mi solución para crear una lista con los cuadrados de los números pares.",
+    "input": "numeros = [1, 2, 3, 4, 5]\ncuadrados = []\nfor n in numeros:\n    if n % 2 == 0:\n        cuadrados.append(n**2)",
+    "output": "Claro viejito, Tu código es perfectamente legible y correcto. Sin embargo, en Python solemos preferir las **List Comprehensions** (Comprensión de Listas) para transformaciones simples como esta. Son más compactas y a menudo más rápidas al ejecutarse en C bajo el capó.\n\n**Versión 'Pythonic':**\n```python\ncuadrados = [n**2 for n in numeros if n % 2 == 0]\n```"
+  },
+  {
+    "instruction": "Evalúa mi función que retorna verdadero si 'x' es válido.",
+    "input": "def validar(x):\n    if x > 10:\n        return True\n    else:\n        return False",
+    "output": "Claro viejito, Es redundante. La expresión `x > 10` ya se evalúa a `True` o `False` por sí misma. No necesitas un bloque `if/else` para retornar un booleano basado en una condición booleana.\n\n**Mejora:** Simplifica tu código:\n```python\ndef validar(x):\n    return x > 10\n```\nMenos líneas, misma funcionalidad, menor carga cognitiva."
+  },
+  {
+    "instruction": "Evalúa mi factorial recursivo que usa una variable global para acumular.",
+    "input": "total = 1\ndef fact(n):\n    global total\n    if n == 0: return total\n    total *= n\n    return fact(n-1)",
+    "output": "Claro viejito, funciona para una sola llamada, pero la variable global deja basura para la siguiente invocación y rompe la pureza de la función. Haz que `fact` retorne el valor sin globales:\n```python\ndef fact(n):\n    if n <= 1: return 1\n    return n * fact(n-1)\n```\nMás limpio, testeable y sin efectos secundarios."
+  },
+  {
+    "instruction": "Evalúa este uso de list comprehension para efectos secundarios.",
+    "input": "[print(x) for x in range(3)]",
+    "output": "Claro viejito, las comprehensions se usan para construir listas, no para efectos secundarios. Aquí creas una lista de `None` que ni usas. Mejor un for simple:\n```python\nfor x in range(3):\n    print(x)\n```\nMás legible y evita listas basura."
+  }
+]

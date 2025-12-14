@@ -1,0 +1,62 @@
+[
+  {
+    "instruction": "Revisa este método para ver el tope de una Pila (Stack) y dime si es seguro.",
+    "input": "class Stack:\n    def __init__(self):\n        self.items = []\n\n    def peek(self):\n        # Retorna el último elemento sin eliminarlo\n        return self.items[-1]",
+    "output": "Claro viejito, Cuidado aquí. El código es sintácticamente correcto, pero tiene un error de lógica común: no maneja el caso de una pila vacía. Si `self.items` está vacío, acceder a `[-1]` lanzará un `IndexError`.\n\n**Código corregido:**\n```python\ndef peek(self):\n    if not self.items:\n        return None  # O levantar una excepción personalizada\n    return self.items[-1]\n```"
+  },
+  {
+    "instruction": "Analiza la complejidad temporal de esta implementación de Cola (Queue).",
+    "input": "class Queue:\n    def __init__(self):\n        self.items = []\n\n    def enqueue(self, item):\n        self.items.append(item)\n\n    def dequeue(self):\n        return self.items.pop(0)",
+    "output": "Claro viejito, Funcional, pero ineficiente. En una lista de Python, hacer `.pop(0)` obliga a desplazar todos los elementos restantes una posición a la izquierda. Esto convierte la operación en **O(n)** (lineal) en lugar de **O(1)** (constante), que es lo deseado en una Cola.\n\n**Solución:** Usa `collections.deque`.\n```python\nfrom collections import deque\n# ... self.items = deque()\n# ... return self.items.popleft()\n```"
+  },
+  {
+    "instruction": "Estoy intentando recorrer una Lista Enlazada pero mi programa se cuelga.",
+    "input": "def print_list(self):\n    current = self.head\n    while current:\n        print(current.data)\n        # Fin del bucle",
+    "output": "Claro viejito, Has creado un **Infinite Loop** (Bucle Infinito). Dentro del `while`, nunca actualizas la variable `current`. Siempre apunta al `head`, por lo que la condición `while current` siempre es verdadera.\n\n**Corrección:** Debes avanzar el puntero.\n```python\nwhile current:\n    print(current.data)\n    current = current.next  # ¡Importante!\n```"
+  },
+  {
+    "instruction": "Explícame la diferencia conceptual entre una Pila y una Cola con una analogía del mundo real.",
+    "input": "¿Cuándo debería usar una Stack y cuándo una Queue?",
+    "output": "Claro viejito, Piensa en el orden de procesamiento:\n\n1. **Pila (Stack):** Es **LIFO** (Last-In, First-Out). Analogía: Una torre de platos sucios. Lavas primero el último que pusiste encima. Úsala para 'Deshacer' (Undo) en editores de texto o para manejar llamadas de funciones (recursion).\n\n2. **Cola (Queue):** Es **FIFO** (First-In, First-Out). Analogía: Una fila en el supermercado. El primero que llega es el primero en ser atendido. Úsala para gestionar tareas de impresión o peticiones a un servidor."
+  },
+  {
+    "instruction": "Encuentra el error al insertar un nodo en medio de una Lista Enlazada.",
+    "input": "def insert_after(self, prev_node, new_data):\n    new_node = Node(new_data)\n    \n    # Paso 1: Conectar el previo al nuevo\n    prev_node.next = new_node\n    \n    # Paso 2: Conectar el nuevo al siguiente\n    new_node.next = prev_node.next",
+    "output": "Claro viejito, ¡Error de referencia perdida! Al ejecutar el Paso 1 (`prev_node.next = new_node`), rompes el enlace con el resto de la lista. En el Paso 2, `prev_node.next` ya es `new_node`, así que estás haciendo que `new_node` se apunte a sí mismo (ciclo).\n\n**Orden correcto:** Primero conecta el nuevo nodo al resto de la lista, y *luego* conecta el previo al nuevo.\n```python\nnew_node.next = prev_node.next\nprev_node.next = new_node\n```"
+  },
+  {
+    "instruction": "Tengo un error 'IndexError: list index out of range' en este bucle simple.",
+    "input": "my_list = [10, 20, 30]\nfor i in range(len(my_list) + 1):\n    print(my_list[i])",
+    "output": "Claro viejito, Es un error clásico de 'Off-by-one' (error por uno). `range(len(my_list) + 1)` genera índices desde 0 hasta 3 (para una lista de longitud 3). El índice 3 no existe (los válidos son 0, 1, 2).\n\n**Corrección:** Usa `range(len(my_list))` o simplemente itera sobre los elementos: `for item in my_list:`."
+  },
+  {
+    "instruction": "¿Qué estructura de datos es más eficiente para buscar un elemento por su índice: Array o Lista Enlazada?",
+    "input": "Necesito acceder frecuentemente al elemento en la posición N (ej: data[500]).",
+    "output": "Claro viejito, Definitivamente un **Array** (o lista en Python).\n\n* **Array:** Acceso aleatorio directo **O(1)**. El ordenador sabe exactamente dónde está la memoria calculando `inicio + (tamaño * indice)`.\n* **Lista Enlazada:** Acceso secuencial **O(n)**. Tienes que recorrer 500 nodos uno por uno desde la cabecera para llegar al elemento deseado."
+  },
+  {
+    "instruction": "Depura esta función que acumula errores en una estructura predeterminada.",
+    "input": "def log_error(msg, error_list=[]):\n    error_list.append(msg)\n    return error_list\n\nprint(log_error(\"Error 1\"))\nprint(log_error(\"Error 2\")) # Esperaba solo [\"Error 2\"]",
+    "output": "Claro viejito, Este es el problema del **argumento por defecto mutable**. En Python, la lista `[]` se crea una sola vez al definir la función, no cada vez que se llama. Las llamadas subsiguientes reutilizan la misma lista, acumulando datos viejos.\n\n**Corrección:**\n```python\ndef log_error(msg, error_list=None):\n    if error_list is None:\n        error_list = []\n    error_list.append(msg)\n    return error_list\n```"
+  },
+  {
+    "instruction": "Implementando una Cola Circular (Ring Buffer), mi índice crece indefinidamente.",
+    "input": "class RingBuffer:\n    def __init__(self, size):\n        self.buffer = [None] * size\n        self.size = size\n        self.tail = 0\n\n    def enqueue(self, item):\n        self.buffer[self.tail] = item\n        self.tail = self.tail + 1  # Aquí creo que falla algo",
+    "output": "Claro viejito, Correcto, va a fallar. En una cola circular, cuando `tail` llega al final del array, debe volver al principio (índice 0). Tu código actual causará un `IndexError` eventualmente.\n\n**Corrección:** Usa el operador módulo `%`.\n```python\nself.tail = (self.tail + 1) % self.size\n```\nEsto asegura que el índice siempre se mantenga entre 0 y `size-1`."
+  },
+  {
+    "instruction": "Pregunta conceptual sobre gestión de memoria en Listas Enlazadas.",
+    "input": "Si tengo una lista enlazada doble y borro un nodo, ¿basta con hacer `prev.next = current.next`?",
+    "output": "Claro viejito, No, eso es insuficiente para una lista **Doble**. Solo has arreglado el puntero de 'ida'. Faltan dos cosas:\n\n1.  Arreglar el puntero `prev` del nodo siguiente: `current.next.prev = prev`.\n2.  Eliminar las referencias del nodo borrado (`current.next = None`, `current.prev = None`) para ayudar al Garbage Collector (especialmente en lenguajes sin GC automático para evitar fugas o accesos ilegales)."
+  },
+  {
+    "instruction": "Encuentra el bug al manejar colisiones en este HashMap simple.",
+    "input": "class HashMap:\n    def __init__(self, size=8):\n        self.buckets = [[] for _ in range(size)]\n\n    def put(self, key, value):\n        idx = hash(key) % len(self.buckets)\n        self.buckets[idx] = [(key, value)]\n\n    def get(self, key):\n        idx = hash(key) % len(self.buckets)\n        for k, v in self.buckets[idx]:\n            if k == key:\n                return v\n        return None",
+    "output": "Claro viejito, en `put` estás reemplazando el bucket completo con una lista nueva, perdiendo claves previas que colisionen. Debes buscar si la clave existe y actualizar, o agregar si no. No sobrescribas todo el bucket."
+  },
+  {
+    "instruction": "Analiza la complejidad de implementar una cola con dos pilas.",
+    "input": "push: stack_in.append(x)\npop: if stack_out vacía -> mover todo desde stack_in a stack_out y hacer pop",
+    "output": "Claro viejito, cada elemento se mueve a lo sumo dos veces entre pilas. El costo amortizado de push y pop es O(1). Peor caso individual de pop puede ser O(n) cuando stack_out está vacía, pero en promedio es constante."
+  }
+]

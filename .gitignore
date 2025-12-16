@@ -58,9 +58,10 @@ pnpm-lock.yaml
 *.7z
 *.gz
 sportimages.zip
-
+*.rar
 # Media (skip uploading heavy assets)
 *.png
+*.webp
 *.jpg
 *.jpeg
 *.bmp
@@ -70,7 +71,7 @@ sportimages.zip
 *.psd
 *.ico
 sportimages/
-
+*.h5
 # Audio & video
 *.mp3
 *.wav

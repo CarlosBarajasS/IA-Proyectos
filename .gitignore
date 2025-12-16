@@ -55,7 +55,6 @@ pnpm-lock.yaml
 *.tar
 *.tar.gz
 *.tgz
-*.rar
 *.7z
 *.gz
 sportimages.zip
@@ -88,7 +87,6 @@ sportimages/
 Unidad2/videos/
 
 # Trained models / checkpoints
-*.h5
 *.hdf5
 *.ckpt
 *.tflite
